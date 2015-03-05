@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -24,6 +24,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bcrypt'
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+require 'rbconfig'
+gem 'wdm', '>= 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw|cygwin/i
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
