@@ -1,0 +1,19 @@
+<h1><%= @customer.id %></h1>
+
+<b>Name: </b><%= @customer.name %><br />
+<b>Email: </b><%= @customer.email %><br />
+<br />
+<br />
+<h3>Purchases made</h3>
+<table border=1>
+  <tr>
+    <th>Product</th>
+    <th>Quantity purchased</th>
+  </tr>
+  <% @product_sales.each do |sale| %>
+  <tr>
+    <td><%= sale[:product].name %></td>
+    <td><%= sale[:quantity] %></td>
+  <% end %>
+</table>
+    
