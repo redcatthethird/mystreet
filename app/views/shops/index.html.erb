@@ -1,0 +1,14 @@
+<h1>Shops</h1>
+
+<table>
+  <tr>
+    <th>Shop name</th>
+  </tr>
+
+<% @shops.each do |shop| %>
+  <tr>
+    <td>
+      <%= shop.name %>
+    </td>
+  </tr>
+<% end %>
