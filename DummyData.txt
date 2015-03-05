@@ -21,12 +21,12 @@ Stores:		storeName			password
 
 
 Products:	prodName	prodPrice	ProdQuan	shopID
-			cabbage		3.00		42			1
-			Meat		12.00		7			2
+			Cabbage		3.00		42			1
+			Meat				7			2
 			Necklace	456.00		2			3
 			Owl			250.00		7			4
 			Boat		2000.00		1     		5
-			lemon		2.00		1 			1
+			Lemon		2.00		1 			1
 			Horse		1500.00		4    		4
 
 
