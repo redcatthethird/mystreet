@@ -8,6 +8,29 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<div class = "container">
+	
+	<a class = "navbar-brand">MyStreet</a>
+	<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+	Menu
+	</button>
+	<div class = "collapse navbar-collapse navHeaderCollapse">
+  	<ul class = "nav navbar-nav navbar-right">
+  	<li><%= link_to 'Shops', shops_path %></li>
+	<li><%= link_to 'Customers', customers_path %></li>
+	</ul>
+	</div>
+	</div>
+</nav>
+
+<style>
+
+body {
+ padding-top: 60px;
+}
+</style>
+
 <%= yield %>
 
 </body>
