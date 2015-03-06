@@ -49,8 +49,6 @@ class ApisController < ApplicationController
       product = Product.find(params[:item])
     rescue ActiveRecord::RecordNotFound
       raise "A product with this ID does not exist"
-    # else # Might be other exceptions!
-    #   raise "Malformed JSON request: quantity must be a number"
     end
 
     begin
@@ -62,8 +60,12 @@ class ApisController < ApplicationController
     if product.quantity < quantity then
       raise "Out of stock"
     end
-    true
-    # Need to actually alter the database here
+
+    ActiveRecord::Base.transaction do
+      Sale.create(product_id: product.id, customer_id: customer.id, quantity: quantity)
+      product.quantity = product.quantity - quantity
+      product.save
+    end
   end
 
 end
