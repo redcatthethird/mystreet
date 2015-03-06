@@ -5,16 +5,22 @@
 <br />
 <br />
 <h3>Purchases made</h3>
-<table border=1>
+<table class = "table table-striped">
+  <thead>
   <tr>
     <th>Product</th>
     <th>Quantity purchased</th>
   </tr>
+  </thead>
   <% @product_sales.each do |sale| %>
-  <tr>
-    <td><%= sale[:product].name %></td>
-    <td><%= sale[:quantity] %></td>
-  </tr>
+  
+  	<tr>
+   		<td><%= sale[:product].name %></td>
+    	<td><%= sale[:quantity] %></td>
+  	</tr>
+  
+  
   <% end %>
-</table>
+</table>	
+
     

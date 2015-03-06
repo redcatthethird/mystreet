@@ -1,11 +1,13 @@
 <h1><%= @shop.name %></h1>
 
-<table border=1>
+<table class = "table table-striped">
+  <thead>
   <tr>
     <th>Product name</th>
     <th>Price per unit</th>
     <th>Quantity in stock</th>
   </tr>
+  </thead>
   <% @products.each do |product| %>
   <tr>
     <td>
