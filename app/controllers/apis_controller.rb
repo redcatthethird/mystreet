@@ -31,7 +31,15 @@ class ApisController < ApplicationController
   end
 
   def acknowledgePurchase
-    true
+    customer = @json['customer']
+    quantity = @json['quantity']
+    product = Product.find(params[:item])
+    if product.quantity < quantity then
+      return nil
+    else
+      true
+      # Need to actually alter the database here
+    end
   end
 
 end
