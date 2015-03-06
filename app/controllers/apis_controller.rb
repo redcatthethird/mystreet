@@ -8,11 +8,14 @@ class ApisController < ApplicationController
       render nothing: true, status: :unauthorized
       return
     end
-    if acknowledgePurchase then
+    
+    begin
+      acknowledgePurchase
       render json: {message: 'Success'}
-    else
-      render json: {message: 'Out of stock'}
+    rescue => e
+      render json: {message: "#{e.message}"}
     end
+
   end
   private
   def authenticate_user_from_token!
@@ -27,19 +30,40 @@ class ApisController < ApplicationController
   end
 
   def parse_request
-    @json = JSON.parse(request.body.read)
+    begin
+      @json = JSON.parse(request.body.read)
+    rescue
+      render json: {message: "Malformed JSON"}
+    end
   end
 
   def acknowledgePurchase
-    customer = @json['customer']
-    quantity = @json['quantity']
-    product = Product.find(params[:item])
-    if product.quantity < quantity then
-      return nil
-    else
-      true
-      # Need to actually alter the database here
+    begin
+      customerId = @json['customer']
+      quantity = @json['quantity']
+    rescue
+      raise "Malformed JSON request: customer and quantity need to be supplied"
     end
+
+    begin
+      product = Product.find(params[:item])
+    rescue ActiveRecord::RecordNotFound
+      raise "A product with this ID does not exist"
+    # else # Might be other exceptions!
+    #   raise "Malformed JSON request: quantity must be a number"
+    end
+
+    begin
+      customer = Customer.find(customerId)
+    rescue ActiveRecord::RecordNotFound
+      raise "A customer with this ID does not exist"
+    end
+
+    if product.quantity < quantity then
+      raise "Out of stock"
+    end
+    true
+    # Need to actually alter the database here
   end
 
 end
